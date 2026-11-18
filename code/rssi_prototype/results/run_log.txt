@@ -1,0 +1,123 @@
+Wed 11/11/2026 21:41:59.21 machine=DESKTOP-52JGREI MEM=24g experiments: sanity_cohort_all sanity_no_pest_all
+Wed 11/11/2026 21:41:59.22 START sanity_cohort_all
+Wed 11/11/2026 21:52:45.80 END sanity_cohort_all exit code 0
+Wed 11/11/2026 21:41:59.22 START sanity_no_pest_all
+Wed 11/11/2026 22:01:43.91 END sanity_no_pest_all exit code 0
+Wed 11/11/2026 22:19:04.31 START sanity_no_pest_all (memory test, -m 11g)
+Wed 11/11/2026 22:26:45.12 END sanity_no_pest_all (memory test, -m 11g) exit code 0
+Wed 11/11/2026 22:52:13.92 machine=DESKTOP-52JGREI MEM=24g experiments: sanity_cohort_all sanity_no_pest_all batch_series_hybrid batch_main_chemical batch_main_nochemical batch_long_hybrid batch_oat batch_wind_direction batch_saturating
+Wed 11/11/2026 22:52:13.92 START sanity_cohort_all
+Wed 11/11/2026 23:02:21.43 END sanity_cohort_all exit code 0
+Wed 11/11/2026 23:02:21.43 START sanity_no_pest_all
+Wed 11/11/2026 23:10:58.26 END sanity_no_pest_all exit code 0
+Wed 11/11/2026 23:10:58.26 START batch_series_hybrid
+Thu 11/12/2026  1:18:48.62 END batch_series_hybrid exit code 0
+Thu 11/12/2026  1:18:48.62 START batch_main_chemical
+Thu 11/12/2026  2:48:09.95 END batch_main_chemical exit code 0
+Thu 11/12/2026  2:48:09.95 START batch_main_nochemical
+Thu 11/12/2026  5:41:59.24 END batch_main_nochemical exit code 0
+Thu 11/12/2026  5:41:59.24 START batch_long_hybrid
+Thu 11/12/2026 13:24:55.55 END batch_long_hybrid exit code 0
+Thu 11/12/2026 13:24:55.55 START batch_oat
+Thu 11/12/2026 16:56:03.89 END batch_oat exit code 0
+Thu 11/12/2026 16:56:03.89 START batch_wind_direction
+Thu 11/12/2026 19:42:54.03 END batch_wind_direction exit code 0
+Thu 11/12/2026 19:42:54.03 START batch_saturating
+Thu 11/12/2026 22:56:07.07 END batch_saturating exit code 0
+Sat 11/14/2026 20:03:07.25 machine=MSI MEM=11g OPTS=-hpc 1 experiments: A_main_chemical A_main_nochemical A_oat_0 A_oat_1 A_oat_2 A_oat_3 A_oat_4 A_oat_5 A_oat_6 A_oat_7 A_oat_8 A_oat_9 A_oat_10 A_oat_11 A_oat_12 A_oat_13 A_oat_14 A_oat_15 A_oat_16 A_oat_17 A_oat_18 A_wind_135 A_wind_315 A_saturating
+Sat 11/14/2026 20:03:07.25 START A_main_chemical
+Sat 11/14/2026 20:25:10.16 END A_main_chemical exit code 0
+Sat 11/14/2026 20:03:07.25 START A_main_nochemical
+Sat 11/14/2026 20:38:14.88 END A_main_nochemical exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_0
+Sat 11/14/2026 20:56:34.29 END A_oat_0 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_1
+Sat 11/14/2026 21:06:04.74 END A_oat_1 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_2
+Sat 11/14/2026 21:37:36.73 END A_oat_2 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_3
+Sat 11/14/2026 21:48:01.87 END A_oat_3 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_4
+Sat 11/14/2026 22:14:04.85 END A_oat_4 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_5
+Sat 11/14/2026 22:22:24.15 END A_oat_5 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_6
+Sat 11/14/2026 22:35:46.24 END A_oat_6 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_7
+Sat 11/14/2026 22:47:18.03 END A_oat_7 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_8
+Sat 11/14/2026 22:54:05.24 END A_oat_8 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_9
+Sat 11/14/2026 23:05:07.26 END A_oat_9 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_10
+Sat 11/14/2026 23:13:49.08 END A_oat_10 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_11
+Sat 11/14/2026 23:21:57.57 END A_oat_11 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_12
+Sat 11/14/2026 23:34:02.99 END A_oat_12 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_13
+Sat 11/14/2026 23:50:16.87 END A_oat_13 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_14
+Sun 11/15/2026  0:09:34.91 END A_oat_14 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_15
+Sun 11/15/2026  0:19:50.04 END A_oat_15 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_16
+Sun 11/15/2026  0:32:54.79 END A_oat_16 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_17
+Sun 11/15/2026  0:42:27.07 END A_oat_17 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_oat_18
+Sun 11/15/2026  0:51:30.61 END A_oat_18 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_wind_135
+Sun 11/15/2026  1:08:09.68 END A_wind_135 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_wind_315
+Sun 11/15/2026  1:25:13.99 END A_wind_315 exit code 0
+Sat 11/14/2026 20:03:07.25 START A_saturating
+Sun 11/15/2026  1:52:00.71 END A_saturating exit code 0
+Sun 11/15/2026  2:23:06.47 machine=MSI MEM=11g OPTS=-hpc 1 experiments: lap_s_hybrid lap_s_hybrid lap_s_none lap_s_chemical_n0 lap_s_biological lap_s_none lap_s_chemical_n0 lap_s_biological
+Sun 11/15/2026  2:23:06.47 START lap_s_hybrid
+Sun 11/15/2026  2:35:37.58 END lap_s_hybrid exit code 0
+Sun 11/15/2026  2:35:37.58 START lap_s_hybrid
+Sun 11/15/2026  2:47:52.25 END lap_s_hybrid exit code 0
+Sun 11/15/2026  2:47:52.25 START lap_s_none
+Sun 11/15/2026  3:22:08.61 END lap_s_none exit code 0
+Sun 11/15/2026  3:22:08.61 START lap_s_chemical_n0
+Sun 11/15/2026  3:33:05.59 END lap_s_chemical_n0 exit code 0
+Sun 11/15/2026  3:33:05.59 START lap_s_biological
+Sun 11/15/2026  3:44:29.36 END lap_s_biological exit code 0
+Sun 11/15/2026  3:44:29.36 START lap_s_none
+Sun 11/15/2026  4:18:58.22 END lap_s_none exit code 0
+Sun 11/15/2026  4:18:58.22 START lap_s_chemical_n0
+Sun 11/15/2026  4:30:12.67 END lap_s_chemical_n0 exit code 0
+Sun 11/15/2026  4:30:12.67 START lap_s_biological
+Sun 11/15/2026  4:41:13.84 END lap_s_biological exit code 0
+Sun 11/15/2026 12:20:54.53 machine=MSI MEM=11g OPTS=-hpc 1 experiments: lap_s_none_series lap_s_chemical_n20 lap_s_chemical_n10 lap_s_chemical_n20 lap_s_chemical_n10
+Sun 11/15/2026 12:20:54.53 START lap_s_none_series
+Sun 11/15/2026 12:58:11.70 END lap_s_none_series exit code 0
+Sun 11/15/2026 12:58:11.70 START lap_s_chemical_n20
+Sun 11/15/2026 13:12:11.35 END lap_s_chemical_n20 exit code 0
+Sun 11/15/2026 13:12:11.35 START lap_s_chemical_n10
+Sun 11/15/2026 13:25:58.29 END lap_s_chemical_n10 exit code 0
+Sun 11/15/2026 13:25:58.29 START lap_s_chemical_n20
+Sun 11/15/2026 13:38:27.25 END lap_s_chemical_n20 exit code 0
+Sun 11/15/2026 13:38:27.25 START lap_s_chemical_n10
+Sun 11/15/2026 13:52:03.15 END lap_s_chemical_n10 exit code 0
+Sun 11/15/2026 17:51:47.80 machine=MSI MEM=11g OPTS=-hpc 1 experiments: lap_h_b4 lap_h_j02 lap_h_b4j02 A_decline A_hybrid_test
+Sun 11/15/2026 17:51:47.81 START lap_h_b4
+Sun 11/15/2026 18:04:30.07 END lap_h_b4 exit code 0
+Sun 11/15/2026 18:04:30.07 START lap_h_j02
+Sun 11/15/2026 18:13:20.80 END lap_h_j02 exit code 0
+Sun 11/15/2026 18:13:20.80 START lap_h_b4j02
+Sun 11/15/2026 18:32:19.46 END lap_h_b4j02 exit code 0
+Sun 11/15/2026 18:32:19.46 START A_decline
+Sun 11/15/2026 18:40:40.05 END A_decline exit code 0
+Sun 11/15/2026 18:40:40.05 START A_hybrid_test
+Sun 11/15/2026 19:21:09.92 END A_hybrid_test exit code 0
+Sun 11/15/2026 23:37:50.35 machine=MSI MEM=11g OPTS=-hpc 1 experiments: A_biodecline_20 A_biodecline_80 lap_h_b25 lap_h_b30
+Sun 11/15/2026 23:37:50.35 START A_biodecline_20
+Sun 11/15/2026 23:49:49.66 END A_biodecline_20 exit code 0
+Sun 11/15/2026 23:49:49.66 START A_biodecline_80
+Sun 11/15/2026 23:57:39.75 END A_biodecline_80 exit code 0
+Sun 11/15/2026 23:57:39.75 START lap_h_b25
+Mon 11/16/2026  0:16:09.76 END lap_h_b25 exit code 0
+Mon 11/16/2026  0:16:09.76 START lap_h_b30
+Mon 11/16/2026  0:26:39.85 END lap_h_b30 exit code 0
