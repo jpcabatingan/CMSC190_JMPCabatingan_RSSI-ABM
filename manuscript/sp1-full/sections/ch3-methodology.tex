@@ -112,15 +112,18 @@ The outbreak is started from its first declared extent. The SRA declared an infe
 
 Every parameter carries a source and a status: real (a Philippine or Negros source for that quantity), real with a stated conversion, analogue (another region, laboratory to field, or a related quantity), or assumption (no source). Table~\ref{table:params} gives the parameters that drive the model. The full table of 50 rows, with page-level sources and swept ranges, is kept in the project repository. Ranges described as arbitrary span qualitatively different behaviour and are not claimed to bound the truth.
 
-\begin{table}[!htbp]
-\vspace{2ex}
-\centering
-\small
-\caption{Main parameters (compressed from the full parameter table).}
-\label{table:params}
-\begin{tabular}{L{0.25\textwidth}L{0.15\textwidth}L{0.15\textwidth}L{0.2\textwidth}L{0.11\textwidth}}
+{\small\singlespacing
+\begin{longtable}{L{0.25\textwidth}L{0.15\textwidth}L{0.15\textwidth}L{0.2\textwidth}L{0.11\textwidth}}
+\caption{Main parameters (compressed from the full parameter table).}\label{table:params} \\
 \hline\hline
 Parameter & Baseline & Swept range & Source & Status \\ \hline
+\endfirsthead
+\multicolumn{5}{l}{\emph{Table~\ref{table:params}, continued.}} \\
+\hline\hline
+Parameter & Baseline & Swept range & Source & Status \\ \hline
+\endhead
+\hline\hline
+\endlastfoot
 Stage durations & 2, 6, 6, 5, 13, 17, 14 d (63 d) & fixed & \citet{Guerrero2026} & real \\
 Fecundity, laying window & 197 eggs, adult age 19--34 d & fixed & \citet{Guerrero2026} & real \\
 Settlement survival & 0.05 & 0.01--0.10 & none & assumption \\
@@ -139,12 +142,11 @@ Trigger level & 1 & 2, 3 & none & assumption \\
 Re-treatment interval & 14 d & 7, 28 d & \citet{SRAnd} & analogue \\
 Cane fraction for a cane cell & 0.5 & not swept & none & assumption \\
 Potential yield & 61.64 t/ha & not swept & \citet{SRA2026FOI}, mean 2020--2025 & real, converted \\
-Loss at a full season at capacity; maximum loss & 0.3; 1.0 & 0.1--0.5; 0.5, 1.0 & none & assumption \\ \hline\hline
-\end{tabular}
-\vspace{2ex}
-\end{table}
+Loss at a full season at capacity; maximum loss & 0.3; 1.0 & 0.1--0.5; 0.5, 1.0 & none & assumption \\
+\end{longtable}
+}
 
-Data for the model came from five places. The laboratory biology comes from published Philippine work. Crop baselines (area, cane yield, and sugar recovery by Negros mill district, crop years 2020--2021 to 2025--2026) came from the SRA reply to a freedom-of-\allowbreak information request filed on 30 September 2026 \citep{SRA2026FOI}. The same reply gave one snapshot of RSSI-affected area by municipality, dated 2 October 2026, without infestation levels or a map. It did not include Negros parasitism rates, cost per hectare, or the SRA weather studies. The provincial monitoring dashboard gives the per-leaf definitions of the infestation levels and a dated survey of severity across Negros Occidental \citep{PGNO2026}. Its farmlot counts measure survey effort, not affected area, so they are not compared with the SRA hectares. The landscape layers came from the open datasets in Table~\ref{table:landscape}. The missing items are handled as swept assumptions, and the outputs are framed as relative comparisons, with the unsupported quantities deferred to later work.
+Data for the model came from five places. The laboratory biology comes from published Philippine work. Crop baselines (area and cane yield by Negros mill district for crop years 2020--2021 to 2025--2026, and sugar recovery for 2025--2026) came from the SRA reply to a freedom-of-\allowbreak information request filed on 30 September 2026 \citep{SRA2026FOI}. The same reply gave one snapshot of RSSI-affected area by municipality, dated 2 October 2026, without infestation levels or a map. It did not include Negros parasitism rates, cost per hectare, or the SRA weather studies. The provincial monitoring dashboard gives the per-leaf definitions of the infestation levels and a dated survey of severity across Negros Occidental \citep{PGNO2026}. Its farmlot counts measure survey effort, not affected area, so they are not compared with the SRA hectares. The landscape layers came from the open datasets in Table~\ref{table:landscape}. The missing items are handled as swept assumptions, and the outputs are framed as relative comparisons, with the unsupported quantities deferred to later work.
 
 \subsection{Implementation}
 
