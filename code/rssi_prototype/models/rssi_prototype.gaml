@@ -1,7 +1,7 @@
 /**
  * Name:        rssi_prototype
  * Description: Initial prototype of the RSSI (Pulvinaria tenuivalvata) management model on a
- *              stylised Negros cane landscape. Implements docs/model-odd-d.md with the values in
+ *              Negros Island cane landscape. Implements docs/model-odd-d.md with the values in
  *              docs/parameter-table.md (decisions D1-D16, 3 Nov 2026).
  *
  *              8 Nov 2026: moved from the stylised 50 x 50 grid onto a real landscape, window A
@@ -10,16 +10,18 @@
  *              boundaries from OCHA COD-AB (valid 13 Feb 2025), roads from OpenStreetMap (ODbL,
  *              downloaded 8 Nov 2026). Inputs built by SP/GIS/scripts/03-04; see includes/.
  *              8 Nov 2026 (later): extended to ALL of Negros Island (57 LGUs, both provinces; J.M.):
- *              1,327 x 2,224 cells of 1 ha, 356,680 cane cells; roads OSM trunk/primary/secondary island-wide.
+ *              1,327 x 2,224 cells of 1 ha, 356,869 cane cells; roads OSM trunk/primary/secondary island-wide.
  *              Inputs: SP/GIS/scripts/06-07. Island-wide RSSI validated area by LGU (SRA FOI Table I)
  *              is carried on the LGU layer for display and for the per-LGU validation output.
  *              Non-cane cells hold no crop and no pest. Farms are 2 x 2-cell blocks of cane cells
- *              (1-4 ha) [assumption: no farm boundaries exist].
+ *              (1-4 ha) [assumption: no farm-boundary data were found].
+ *              13 Nov 2026: seeded start (seed_mode "may2025"): 87 cane cells seeded on day 233 (22 May 2025)
+ *              across the 11 LGUs first reported; replaces the random start used before 13 Nov.
  *
  *              Shows mechanics only: daily clock, crop calendar, stage-structured pest per cell
  *              (63 daily age classes), parasitism, neighbour (optionally wind-biased) and long-jump spread, cumulative
  *              damage, weekly farmer monitoring, four strategies with a common trigger.
- *              No results are claimed from this prototype.
+ *              Outputs are relative comparisons between strategies under stated assumptions, not forecasts.
  *
  *              Status: written 3 Nov 2026; actions given "()" for the 2026 GAML grammar (4 Nov). 4 Nov: farm-level
  *              outlines, treatment markers, road strip, compare_strategies experiment added. 4 Nov 01:00:
