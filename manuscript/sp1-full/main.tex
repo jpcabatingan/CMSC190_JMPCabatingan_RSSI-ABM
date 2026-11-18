@@ -1,0 +1,70 @@
+% SP1 manuscript draft, 13 Nov 2026. Class: icsthesis.cls (ICS template). Citations: apacite (natbibapa).
+% Build: pdflatex main; bibtex main; pdflatex main; pdflatex main
+\documentclass{icsthesis}
+\usepackage{enumitem}
+\usepackage{lipsum} % acknowledgement placeholder only; remove with it
+\usepackage{url}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlist{nosep}
+
+% Marks results not yet run. Remove every \PENDING before submission.
+\newcommand{\PENDING}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\singlespacing\small\textbf{PENDING.} #1}}\par}
+
+\renewcommand{\TITLE}{AN AGENT-BASED MODEL OF RED-STRIPED SOFT SCALE INSECT (\emph{Pulvinaria tenuivalvata}) MANAGEMENT ON SUGARCANE IN NEGROS ISLAND}
+\renewcommand{\AUTHOR}{JOANNE MARYZ CABATINGAN}
+\renewcommand{\DEGREE}{BACHELOR OF SCIENCE IN COMPUTER SCIENCE}
+\renewcommand{\MONTH}{NOVEMBER}
+\renewcommand{\YEAR}{2026}
+
+\begin{document}
+
+	\begin{frontmatter}
+		\maketitle
+
+		% Approval page, per the AY 2026-2027 ICS template (SP version: adviser only).
+		\begin{approvalpage}
+			\sloppy The Special Problem hereto attached, titled \TITLE , prepared and submitted by \AUTHOR , in partial fulfillment of the requirements for the degree of \DEGREE\ is hereby accepted.
+
+			\addsignature{ZENITH O. ARNEJO}{Adviser}
+		\end{approvalpage}
+
+		\begin{biosketch}
+			Joanne Maryz Cabatingan is from Dipolog City, Zamboanga del Norte. She finished high school with high honors at the Philippine Science High School -- Zamboanga Peninsula Region Campus in 2023, then moved to Los Ba\~{n}os to take up Computer Science at the University of the Philippines Los Ba\~{n}os as a Department of Science and Technology scholar.
+
+			Away from the screen, she makes charm bracelets, swims, and puts together wooden puzzles. She also likes to travel on her own.
+
+			She hopes to work in user experience design and research, simulation, or software engineering, and later to take a master's degree.
+
+			\addauthorsignaturefield
+		\end{biosketch}
+
+		\begin{acknowledgement}
+			% Placeholder: J.M. to write after the manuscript is done. Must not exceed one page.
+			\lipsum[4]
+		\end{acknowledgement}
+
+		\maketableofcontents
+		\makelistoftables
+		\makelistoffigures
+
+		\begin{abstractwithpageno}
+		\setlength{\emergencystretch}{1.5em}
+		\\
+		\textbf{\AUTHOR}, University of the Philippines Los Ba\~{n}os, \MONTH\ \YEAR. \textbf{\TITLE}
+		\\Major Professor: ZENITH O. ARNEJO\\
+
+			\input{sections/abstract}
+		\end{abstractwithpageno}
+	\end{frontmatter}
+
+	\begin{mainmatter}
+		\setlength{\emergencystretch}{3em} % the class disables hyphenation; this stops lines running into the margin
+		\input{sections/ch1-introduction}
+		\input{sections/ch2-review}
+		\input{sections/ch3-methodology}
+		\input{sections/ch4-results} % DRAFT, 18 Nov 2026
+
+		\makereferences{references}
+	\end{mainmatter}
+\end{document}
