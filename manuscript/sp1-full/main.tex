@@ -1,16 +1,13 @@
-% SP1 manuscript draft, 13 Nov 2026. Class: icsthesis.cls (ICS template). Citations: apacite (natbibapa).
 % Build: pdflatex main; bibtex main; pdflatex main; pdflatex main
 \documentclass{icsthesis}
 \usepackage{enumitem}
-\usepackage{lipsum} % acknowledgement placeholder only; remove with it
+\usepackage{lipsum}
 \usepackage{url}
 \usepackage{array}
 \usepackage{longtable}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlist{nosep}
 
-% Marks results not yet run. Remove every \PENDING before submission.
-\newcommand{\PENDING}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\singlespacing\small\textbf{PENDING.} #1}}\par}
 
 \renewcommand{\TITLE}{AN AGENT-BASED MODEL OF RED-STRIPED SOFT SCALE INSECT (\emph{Pulvinaria tenuivalvata}) MANAGEMENT ON SUGARCANE IN NEGROS ISLAND}
 \renewcommand{\AUTHOR}{JOANNE MARYZ CABATINGAN}
@@ -23,7 +20,6 @@
 	\begin{frontmatter}
 		\maketitle
 
-		% Approval page, per the AY 2026-2027 ICS template (SP version: adviser only).
 		\begin{approvalpage}
 			\sloppy The Special Problem hereto attached, titled \TITLE , prepared and submitted by \AUTHOR , in partial fulfillment of the requirements for the degree of \DEGREE\ is hereby accepted.
 
@@ -41,7 +37,6 @@
 		\end{biosketch}
 
 		\begin{acknowledgement}
-			% Placeholder: J.M. to write after the manuscript is done. Must not exceed one page.
 			\lipsum[4]
 		\end{acknowledgement}
 
@@ -60,11 +55,11 @@
 	\end{frontmatter}
 
 	\begin{mainmatter}
-		\setlength{\emergencystretch}{3em} % the class disables hyphenation; this stops lines running into the margin
+		\setlength{\emergencystretch}{3em}
 		\input{sections/ch1-introduction}
 		\input{sections/ch2-review}
 		\input{sections/ch3-methodology}
-		\input{sections/ch4-results} % DRAFT, 18 Nov 2026
+		\input{sections/ch4-results}
 
 		\makereferences{references}
 	\end{mainmatter}

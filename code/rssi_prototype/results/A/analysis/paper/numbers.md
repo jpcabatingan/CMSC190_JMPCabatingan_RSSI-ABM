@@ -1,6 +1,6 @@
-# Window A seeded runs: numbers behind report.md
+# Window A seeded runs: numbers
 
-All values [computed] from the raw CSVs by analysis.py.
+All values are computed from the raw CSVs by analysis.py.
 
 ## 1. Main comparison (recomputed)
 
@@ -229,7 +229,7 @@ Tuning (no control): transmission x3 gives 0.98 of the validated area; log-log i
 
 ## 12. Trajectory: model area ever infested (ha, island) vs dated official figures
 
-Model value = weekly series at the week containing the date. Observed metrics and scopes differ between rows (see column); early figures reflect detection catching up and SRA attributes part of the mid-2026 rise to validation effort. Sources: docs/reference-situation.md, Area timeline.
+Model value = weekly series at the week containing the date. Observed metrics and scopes differ between rows (see column); early figures reflect detection catching up and SRA attributes part of the mid-2026 rise to validation effort. Sources are in OBS in analysis.py; the manuscript cites only the 22 May 2025, 11 Sep 2025 and 2 Oct 2026 figures.
 
 | date | model day | observed ha | metric; scope | hybrid, baseline | none, baseline | none, long jump 0.2 | none, transmission x4 | none, both | none, transmission x2.5 | none, transmission x3 |
 |---|---|---|---|---|---|---|---|---|---|---|

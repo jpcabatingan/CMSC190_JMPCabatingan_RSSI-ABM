@@ -1,4 +1,4 @@
-"""Independent recomputation of every result number used in the IEEE paper, from raw batch CSVs."""
+"""Recompute the result numbers in the IEEE paper from the raw batch CSVs. Usage: python recompute.py <results folder>"""
 import sys, csv, statistics as st, math, collections
 R=sys.argv[1]
 C=["experiment","oat_case","strategy","n_half","seed","share_ever","share_end","load","chem","bio","cane","harv","maxD"]

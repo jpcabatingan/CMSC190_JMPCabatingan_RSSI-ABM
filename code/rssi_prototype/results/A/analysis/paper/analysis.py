@@ -1,6 +1,6 @@
-"""Deep analysis of the window A seeded runs (116 runs, 15 Nov 2026).
+"""Analysis of the window A seeded runs (main comparison, sensitivity, wind, decline and hindcast).
 Run:  python analysis.py   (from this folder). Reads ../../{main,oat,wind}/*.csv, writes numbers.md and fig-*.png here.
-Every number in report.md comes from numbers.md. pandas + matplotlib only.
+Needs pandas and matplotlib.
 """
 import os, re
 import numpy as np
@@ -37,7 +37,7 @@ for d in (main, oat, wind, sat):
 def lab(s, n):
     return s if s in ("none", "biological") else f"{s} (n_half {int(n) or 'none'})"
 
-out = ["# Window A seeded runs: numbers behind report.md", "", "All values [computed] from the raw CSVs by analysis.py.", ""]
+out = ["# Window A seeded runs: numbers", "", "All values are computed from the raw CSVs by analysis.py.", ""]
 def P(*a): out.extend(a)
 def tbl(df, fmt=None):
     df = df.copy()
@@ -279,7 +279,7 @@ if hrows:
         P(f"Tuning (no control): transmission x3 gives {hd['none, transmission x3'] / SRA_VAL:.2f} of the validated area; log-log interpolation between x3 and x4 "
           f"puts the match at about x{3 * (4 / 3) ** f:.2f} [inference; single runs]. One free parameter fitted to one number, with control ignored: tuned, not calibrated.", "")
 
-# ---------- 12 Trajectory: model weekly curves vs dated SRA / official area figures (docs/reference-situation.md, Area timeline)
+# ---------- 12 Trajectory: model weekly curves vs dated official area figures
 import datetime as _dt
 OBS = [  # (date, ha, metric, scope, source)
     ("2025-05-22", 87.04, "affected, at declaration (= the model seed)", "Negros", "SRA via Inquirer / Watchmen 2025"),
@@ -307,7 +307,7 @@ if CUR:
         rows.append([d, md_, f"{ha:,.0f}", metric + "; " + scope] + ["87 (seed)" if md_ == 233 else (f"{CUR[k].loc[wk]:,.0f}" if wk in CUR[k].index else "-") for k in CUR])
     P("## 12. Trajectory: model area ever infested (ha, island) vs dated official figures", "",
       "Model value = weekly series at the week containing the date. Observed metrics and scopes differ between rows (see column); "
-      "early figures reflect detection catching up and SRA attributes part of the mid-2026 rise to validation effort. Sources: docs/reference-situation.md, Area timeline.", "")
+      "early figures reflect detection catching up and SRA attributes part of the mid-2026 rise to validation effort. Sources are in OBS in analysis.py; the manuscript cites only the 22 May 2025, 11 Sep 2025 and 2 Oct 2026 figures.", "")
     P(*tbl(pd.DataFrame(rows, columns=["date", "model day", "observed ha", "metric; scope"] + list(CUR))))
     def growth(a, b, ser=None):
         return None

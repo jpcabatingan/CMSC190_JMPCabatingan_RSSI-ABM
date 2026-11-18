@@ -1,4 +1,4 @@
-"""GAMA inputs for all of Negros, into sp-tracker/gama/rssi_prototype/includes/.
+"""GAMA inputs for all of Negros, into ../includes/.
 landscape_negros.asc  value = lgu_idx x 10 + cane fraction (lgu_idx 1-57, see lgu_index.csv); -9999 outside Negros LGUs
 lgus_negros.shp       57 LGUs (UTM 51N): idx, adm3_name, adm3_pcode, adm2_name, valid_ha (SRA FOI Table I, 2 Oct 2026; -1 = no row)
 roads_negros.shp      OSM trunk/primary/secondary inside the Negros LGUs (UTM 51N); (c) OpenStreetMap contributors, ODbL"""

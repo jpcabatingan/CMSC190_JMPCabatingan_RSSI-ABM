@@ -14,7 +14,7 @@ The model is `rssi_prototype/models/rssi_prototype.gaml`. Experiments, inputs, r
 * `gis-scripts/`: scripts that built `includes/` from the sugarcane map (Di Tommaso et al. 2024), OCHA COD-AB boundaries and OpenStreetMap roads
 * `run_batches.bat`, `run_batches.sh`: run batch experiments headless, one after another
 * `analysis/`: summary tables and figures from the batch CSVs
-* `results/`: output CSVs of the reported runs (`A/` window A, `seeded/` island), `run_log.txt`, and `A/analysis/fable/` (report, numbers and figures used in the paper). Batch CSVs have no header; column order is in `results/COLUMNS.csv`
+* `results/`: output CSVs of the reported runs (`A/` window A, `seeded/` island), `run_log.txt`, and `A/analysis/paper/` (numbers and figures for the window A results). Batch CSVs have no header; column order is in `results/COLUMNS.csv`
 
 ## Instructions
 1. Install GAMA 2026.11.0.
@@ -30,5 +30,5 @@ Keep `OPTS=-hpc 1` on a 16 GB machine so that only one simulation is held in mem
 5. To rebuild the analysis:
 ```
 python analysis/analyse_results.py results/seeded
-cd results/A/analysis/fable && python analysis.py
+cd results/A/analysis/paper && python analysis.py
 ```

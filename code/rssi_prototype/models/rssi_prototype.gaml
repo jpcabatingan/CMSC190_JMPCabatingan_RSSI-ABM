@@ -1,33 +1,23 @@
 /**
  * Name:        rssi_prototype
- * Description: Initial prototype of the RSSI (Pulvinaria tenuivalvata) management model on a
- *              Negros Island cane landscape. Implements docs/model-odd-d.md with the values in
- *              docs/parameter-table.md (decisions D1-D16, 3 Nov 2026).
+ * Description: Agent-based model of red-striped soft scale insect (RSSI, Pulvinaria tenuivalvata)
+ *              management on sugarcane in Negros Island.
  *
- *              8 Nov 2026: moved from the stylised 50 x 50 grid onto a real landscape, window A
- *              (Cadiz City, Manapla, City of Victorias, Negros Occidental): 1-ha cells in UTM 51N,
- *              cane from Di Tommaso et al. 2024 (GEDI-S2 sugarcane map, 2019-2022), municipal
- *              boundaries from OCHA COD-AB (valid 13 Feb 2025), roads from OpenStreetMap (ODbL,
- *              downloaded 8 Nov 2026). Inputs built by SP/GIS/scripts/03-04; see includes/.
- *              8 Nov 2026 (later): extended to ALL of Negros Island (57 LGUs, both provinces; J.M.):
- *              1,327 x 2,224 cells of 1 ha, 356,869 cane cells; roads OSM trunk/primary/secondary island-wide.
- *              Inputs: SP/GIS/scripts/06-07. Island-wide RSSI validated area by LGU (SRA FOI Table I)
- *              is carried on the LGU layer for display and for the per-LGU validation output.
+ *              Landscape: all of Negros Island (57 cities and municipalities), 1,327 x 2,224 cells of
+ *              1 ha in UTM 51N, 356,869 cane cells. Cane from Di Tommaso et al. 2024 (GEDI-S2 sugarcane
+ *              map, 2019-2022), municipal boundaries from OCHA COD-AB (valid 13 Feb 2025), roads from
+ *              OpenStreetMap (ODbL). Window A (Cadiz City, Manapla, City of Victorias) is kept as a
+ *              smaller landscape for runs that need many replicates. Inputs are built by ../gis-scripts.
  *              Non-cane cells hold no crop and no pest. Farms are 2 x 2-cell blocks of cane cells
  *              (1-4 ha) [assumption: no farm-boundary data were found].
- *              13 Nov 2026: seeded start (seed_mode "may2025"): 87 cane cells seeded on day 233 (22 May 2025)
- *              across the 11 LGUs first reported; replaces the random start used before 13 Nov.
  *
- *              Shows mechanics only: daily clock, crop calendar, stage-structured pest per cell
- *              (63 daily age classes), parasitism, neighbour (optionally wind-biased) and long-jump spread, cumulative
- *              damage, weekly farmer monitoring, four strategies with a common trigger.
+ *              Processes: daily clock, crop calendar, stage-structured pest per cell (63 daily age
+ *              classes), parasitism, neighbour (optionally wind-biased) and long-jump spread, cumulative
+ *              damage, weekly farmer monitoring, four strategies with a common trigger. Runs start
+ *              pest-free and are seeded with 87 cane cells on day 233 (22 May 2025) in the 11 LGUs
+ *              first reported as infested (seed_mode "may2025").
+ *
  *              Outputs are relative comparisons between strategies under stated assumptions, not forecasts.
- *
- *              Status: written 3 Nov 2026; actions given "()" for the 2026 GAML grammar (4 Nov). 4 Nov: farm-level
- *              outlines, treatment markers, road strip, compare_strategies experiment added. 4 Nov 01:00:
- *              sanity_cohort, sanity_no_pest, batch_main_*, batch_oat added. 4 Nov 11:00: sanity checks
- *              passed; main batch dry run (320 runs). Code audited against the ODD+D (notes/code-audit-
- *              2026-11-04.md): saturating damage switch, max density output, weekly series added.
  *
  * Author: Joanne Maryz Cabatingan
  */
@@ -37,7 +27,7 @@ model rssi_prototype
 global {
 
     // ---------------- Simulation settings ----------------
-    int horizon <- 1095;              // 3 crop years, 1 tick = 1 day (D5)
+    int horizon <- 1095;              // 3 crop years, 1 tick = 1 day
     int farm_side <- 2;               // farms = cane cells in each 2 x 2-cell block (1-4 ha) [assumption]
 
     // ---------------- Landscape: all of Negros Island (8 Nov 2026) ----------------
@@ -70,16 +60,16 @@ global {
     int n_cane <- 1;
     bool show_lgu_names <- true;      // display only
 
-    // ---------------- Pest life history (A1 Guerrero et al. 2026) ----------------
-    // Daily age classes 0..62. Integer stage spans inside A1 Table 2 ranges, sum 63 d:
+    // ---------------- Pest life history (Guerrero et al. 2026) ----------------
+    // Daily age classes 0..62. Integer stage spans inside the Table 2 ranges of Guerrero et al. 2026, sum 63 d:
     // egg 0-1 | I1 2-7 | I2 8-13 | I3 14-18 | young adult 19-31 | mature 32-48 | senescing 49-62
     int n_ages <- 63;
     int nymph_first <- 2;
     int adult_first <- 19;
     int young_adult_last <- 31;
-    int lay_first <- 38;              // adult age 19 (A1 Table 3; age counted from the moult to adult, A1 Methods p.176 'Oviposition in RSSI')
+    int lay_first <- 38;              // adult age 19 (Guerrero et al. 2026, Table 3; age counted from the moult to adult)
     int lay_last <- 53;               // adult age 34
-    float eggs_per_day <- 197.0 / 16.0;   // 197 eggs over 16 laying days [computed]
+    float eggs_per_day <- 197.0 / 16.0;   // 197 eggs over 16 laying days
 
     // ---------------- Pest assumptions ----------------
     float s_settle <- 0.05;           // egg -> settled crawler, lumped [assumption], swept 0.01-0.10
@@ -94,7 +84,7 @@ global {
     // Wind bias on neighbour spread (Doc Arnejo's suggestion, 7 Oct). No RSSI wind data:
     // a swept sensitivity switch, not a calibrated wind model. 0 = no wind effect.
     float wind_bias <- 0.0;           // 0-1; weight = max(0, 1 + wind_bias x cos(angle to wind))
-    float wind_dir <- 135.0;          // degrees the wind blows TOWARD: 0 = right (+x), 90 = down (+y); 135 = toward SW, i.e. wind FROM the NE (PAGASA Dumaguete normals, A22). Only acts when wind_bias > 0
+    float wind_dir <- 135.0;          // degrees the wind blows TOWARD: 0 = right (+x), 90 = down (+y); 135 = toward SW, i.e. wind FROM the NE (PAGASA climatological normals 1991-2020, Dumaguete). Only acts when wind_bias > 0
     // Roadside exposure (Burgonio: roadside plantations worst hit; likely traffic and cane
     // transport, not wind). Real roads (OSM trunk, primary, secondary); cane cells within
     // roadside_m of one get their long-jump probability multiplied. 1 = no effect [assumption], swept {1, 3}.
@@ -107,36 +97,36 @@ global {
     float road_daily <- 0.0;          // daily chance a roadside cell is inoculated x infested share
                                       // (traffic-borne crawlers) [assumption]; 0 = no effect
 
-    // ---------------- Crop (SRA FOI; A9) ----------------
+    // ---------------- Crop (SRA FOI reply 2026; USDA FAS GAIN RP2025-0043) ----------------
     float Y0 <- 61.64;                // TC/ha, pre-outbreak Negros mean [computed, FOI Table II]
     float recovery <- 1.61;           // LKg/TC, FOI Table III NEGROS CY2025-26
-    int planting_window <- 243;       // 1 Oct - 31 May (A9), uniform [assumption]
+    int planting_window <- 243;       // 1 Oct - 31 May (USDA FAS 2025), uniform [assumption]
     int crop_length <- 365;           // harvest at 12 months, then ratoon [assumption]
     float h_harv <- 0.9;              // share of pests removed at harvest [assumption]
 
     // ---------------- Damage (Alves et al. 2026 structure) ----------------
     float L_ref <- 0.3;               // loss after a full season at capacity [assumption], 0.1-0.5
     float L_max <- 1.0;               // maximum loss, swept 0.5-1.0
-    bool dmg_saturating <- false;     // DM1 robustness check: loss = L_max x (1 - exp(-beta x pest_days))
+    bool dmg_saturating <- false;     // robustness check: loss = L_max x (1 - exp(-beta x pest_days))
 
     // ---------------- Control ----------------
-    float k_chem_nymph <- 0.743;      // median % reduction, 1st application, 6 compounds, A4 p.3 [computed]; A4 gives no spray-to-count interval: applying it over 14 d is the model's assumption (D9)
+    float k_chem_nymph <- 0.743;      // median % reduction, 1st application, 6 compounds (SRA pest profile, NCPC table); the source gives no spray-to-count interval, so applying it over 14 d is an assumption
     float k_chem_adult <- 0.549;
-    float r_bc <- 0.9;                // Metarhizium = r_bc x chemical, 0.80-1.00 (A6 field; A5 lab)
-    int treat_days <- 14;             // both agents act over 14 days (D9)
-    int n_half <- 20;                 // chemical kill halves after n_half uses; 0 = no decline (D16)
-    int n_half_bio <- 0;              // same decline for the biological agent; 0 = none (baseline). Symmetry test only (15 Nov 2026) [assumption]
-    int r_interval <- 14;             // re-treatment interval (A4 p.3 example rotation)
+    float r_bc <- 0.9;                // Metarhizium = r_bc x chemical, 0.80-1.00 (Sallam et al. 2021 field; Buletin & Pardillo 2026 lab)
+    int treat_days <- 14;             // both agents act over 14 days
+    int n_half <- 20;                 // chemical kill halves after n_half uses; 0 = no decline
+    int n_half_bio <- 0;              // same decline for the biological agent; 0 = none (baseline). Symmetry test only [assumption]
+    int r_interval <- 14;             // re-treatment interval (SRA pest profile, example rotation at 2-week interval)
 
-    // ---------------- Natural enemies (A2, A3) ----------------
-    float p_para <- 0.3485;           // {0, 0.3485, 0.668} (D15)
+    // ---------------- Natural enemies (Guerrero et al. 2024; Navasero et al. 2023) ----------------
+    float p_para <- 0.3485;           // swept {0, 0.3485, 0.668}
     int young_adult_days <- 13;
     float h_para <- 0.0;              // daily hazard, set in init
 
-    // ---------------- Farmer (D8, D9) ----------------
+    // ---------------- Farmer ----------------
     string strategy <- "hybrid";      // none / chemical / biological / hybrid
     int trigger_T <- 1;               // same trigger for every strategy
-    // Level thresholds (13 Nov 2026, J.M. OK): PGNO Provincial Biosecurity Task Force infestation levels,
+    // Level thresholds: PGNO Provincial Biosecurity Task Force infestation levels,
     // Level 1 Low 1-5, Level 2 Moderate 6-10, Level 3 High >10 insects per leaf (rssi.mis-negros.com,
     // data as of 8 Nov 2026). The model's density is relative to K, so K must be given in insects per
     // leaf: k_leaf = 100 [assumption], chosen so that Level 1 (1 per leaf) equals the infested
@@ -150,14 +140,14 @@ global {
 
     // ---------------- Initial condition [assumption] ----------------
     float init_share <- 0.01;         // share of cells seeded
-    // Seeded start (13 Nov 2026, after the mock defence): "random" = init_share of cane cells anywhere;
-    // "may2025" = the SRA's first declared infestation, 22 May 2025: 87.04 ha in 11 Negros Occidental
-    // LGUs (Inquirer 2025; Watchmen Daily Journal 27 May 2025; PNA 26 May 2025, as SRA figures).
+    // Start: "random" = init_share of cane cells anywhere;
+    // "may2025" = the SRA's first declared infestation, 22 May 2025: 87 ha (Manila Bulletin, 2 Jun 2025)
+    // in 11 Negros Occidental LGUs (Guadalquiver, PNA, 26 May 2025).
     // No per-LGU split was published for that date, so the 87 cells are split equally across the 11
     // LGUs and placed at random within each LGU's cane [assumption].
     string seed_mode <- "random";
     int seed_ha <- 87;
-    // Model day 0 = 1 Oct (start of the planting window, A9), so 22 May = day 233 [computed]. The
+    // Model day 0 = 1 Oct (start of the planting window), so 22 May = day 233. The
     // landscape runs pest-free until then, so all cane planted 1 Oct-21 May is standing when the
     // seeds go in. Hindcast end, 2 Oct 2026 = day 233 + 498 = 731.
     int seed_day <- 233;
@@ -186,7 +176,7 @@ global {
     float sugar_total <- 0.0;         // LKg
     float inf_share_prev <- 0.0;      // infested share at the end of the previous day
     float run_seed <- 0.0;            // this simulation's random seed, logged in batch rows
-    float max_D <- 0.0;               // highest cell density reached in the run (ODD pattern 1: should stay near K)
+    float max_D <- 0.0;               // highest cell density reached in the run (should stay near K)
     string batch_file <- "";          // batch experiments: end-of-run row appended here (relative to models/)
     string batch_label <- "";         // first column of that row (main, oat, wind, sat, long)
     bool save_series <- false;        // write a weekly time series row to ../results/series/
@@ -239,7 +229,7 @@ global {
         cal <- cane_cells group_by (each.plant_day mod crop_length);
         // cosmetic traffic on the real road network (no model state)
         road_net <- as_edge_graph(road);
-        // Vehicles removed from the map (J.M., 8 Nov 2026); uncomment to show them again.
+        // Vehicles are hidden; uncomment to show them.
         // create car number: (gui ? n_cars : 0) {
         //     location <- any_location_in(one_of(road));
         //     col <- one_of([rgb(250, 250, 250), rgb(255, 210, 0), rgb(40, 40, 40), rgb(220, 30, 30)]);
@@ -258,7 +248,7 @@ global {
     }
 
     // One-at-a-time sensitivity: each case moves one assumption to its low or high value
-    // (docs/parameter-table.md); everything else stays at baseline.
+    // (see the parameter table in the manuscript); everything else stays at baseline.
     action apply_oat() {
         switch oat_case {
             match 1  { s_settle <- 0.01; }
@@ -375,7 +365,7 @@ global {
             + harvest_count + "," + max_D + "\n") to: batch_file format: "text" rewrite: false;
     }
 
-    // Weekly time series (for the time-scale check, ODD pattern 3). One row per run per week.
+    // Weekly time series (for the hindcast). One row per run per week.
     reflex save_weekly when: save_series and cycle mod 7 = 0 {
         save (series_tag + "," + strategy + "," + n_half + "," + oat_case + "," + run_seed + "," + cycle + ","
             + share_infested + "," + share_ever + "," + mean_density + "," + apps_chem + "," + apps_bio + ","
@@ -493,11 +483,11 @@ grid cell file: landscape_file neighbors: 8 use_individual_shapes: false use_reg
     }
 
     action mortality() {
-        // parasitism on young adults (D3)
+        // parasitism on young adults
         if (h_para > 0.0) {
             loop a from: adult_first to: young_adult_last { pop[a] <- pop[a] * (1.0 - h_para); }
         }
-        // treatments: same stages and time course for both agents (D9)
+        // treatments: same stages and time course for both agents
         if (chem_left > 0 or bio_left > 0) {
             float sn <- (chem_left > 0 ? (1.0 - hc_nymph) : 1.0) * (bio_left > 0 ? (1.0 - hb_nymph) : 1.0);
             float sa <- (chem_left > 0 ? (1.0 - hc_adult) : 1.0) * (bio_left > 0 ? (1.0 - hb_adult) : 1.0);
@@ -1083,9 +1073,9 @@ experiment sanity_no_pest type: gui {
 
 // ---------------- Batch experiments ----------------
 // parallel: N = simulations held in memory at once. Each holds the whole island (over 11 GB on the laptop, 8 Nov; measure M on the campus machine);
-// set N = MEM / M rounded down (README_campus.md). If GAMA warns that memory is low, lower N.
+// set N = MEM / M rounded down. If GAMA warns that memory is low, lower N.
 // Rows are appended to ../results/<experiment folder>/*.csv, one per run (main/, oat/, wind/).
-// Purpose and goal of each experiment: docs/experiments.md. Columns (no header row):
+// Columns (no header row; see ../results/COLUMNS.csv):
 // experiment, oat_case, strategy, n_half, seed, share_ever, share_infested_end, cum_kdays,
 // apps_chem, apps_bio, cane_total, harvest_count, max_D (max_D added 4 Nov; the 320 dry-run rows lack it).
 // apps_* count farm-level treatment events (one per 4-ha farm), not hectares treated.
@@ -1120,9 +1110,9 @@ experiment batch_oat type: batch repeat: 3 keep_seed: false parallel: 2 until: c
     parameter "label" var: batch_label among: ["oat"];
 }
 
-// Wind-direction check (docs/notes: weather-data note): does direction matter? On the real map it may.
+// Wind-direction check: does direction matter on the real map?
 // wind_bias 1, direction 135 (from NE, PAGASA Dumaguete annual) vs 315 (from SW), 4 strategies,
-// 3 replicates = 24 runs. If outputs match within replicate spread, direction does not matter for SP1.
+// 3 replicates = 24 runs. If outputs match within replicate spread, direction does not matter for the comparison.
 experiment batch_wind_direction type: batch repeat: 3 keep_seed: false parallel: 2 until: cycle >= horizon {
     parameter "gui" var: gui among: [false];
     parameter "Wind bias" var: wind_bias among: [1.0];
@@ -1133,9 +1123,9 @@ experiment batch_wind_direction type: batch repeat: 3 keep_seed: false parallel:
     parameter "label" var: batch_label among: ["wind"];
 }
 
-// Time-scale check (ODD pattern 3; D7, D13): weekly share ever infested under the hybrid strategy,
+// Time-scale check: weekly share ever infested under the hybrid strategy,
 // 10 replicates, baseline parameters; also writes per-LGU ever-infested cells (results/series/lgu_*.csv). Compared later with the verified point (30.1% of planted
-// area validated by 2 Oct 2026, A21) once the model's outbreak start date is defined.
+// area validated by 2 Oct 2026, SRA FOI reply) once the model's outbreak start date is defined.
 experiment batch_series_hybrid type: batch repeat: 10 keep_seed: false parallel: 2 until: cycle >= horizon {
     parameter "gui" var: gui among: [false];
     parameter "Strategy" var: strategy among: ["hybrid"];
@@ -1144,7 +1134,7 @@ experiment batch_series_hybrid type: batch repeat: 10 keep_seed: false parallel:
     method exhaustive;
 }
 
-// Damage-form check (DM1): main configurations at n_half = 20 with saturating damage, 3 replicates.
+// Damage-form check: main configurations at n_half = 20 with saturating damage, 3 replicates.
 // Under linear damage the ranking by loss equals the ranking by pest load; this checks it under
 // saturation. Rows go to ../results/main/batch_saturating.csv.
 experiment batch_saturating type: batch repeat: 3 keep_seed: false parallel: 2 until: cycle >= horizon {
@@ -1479,7 +1469,7 @@ experiment A_saturating type: batch repeat: 2 keep_seed: false parallel: 2 until
     parameter "label" var: batch_label among: ["sat"];
 }
 
-// ===== Seeded island runs (13 Nov 2026, after the mock defence; J.M. chose "everything seeded").
+// ===== Seeded island runs.
 // Start: pest-free crop calendar from day 0 (1 Oct); 87 cells seeded on day 233 (22 May 2025) in the
 // 11 LGUs of SRA's first declared infestation; then 1,095 days, so horizon = 233 + 1,095 = 1,328.
 // Required set (13 Nov, run counts cut): hybrid, none, chemical n0, biological; the decline variants

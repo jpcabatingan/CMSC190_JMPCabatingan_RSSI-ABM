@@ -8,7 +8,7 @@ Output CSVs of the runs reported in the manuscript and IEEE paper. All runs use 
 | `A/main/` | Window A: main comparison (`batch_main`), chemical decline 40/80/160 (`batch_decline`), hybrid test (`batch_hybridtest`), biological decline (`batch_biodecline`), saturating damage (`batch_saturating`) |
 | `A/oat/` | Window A one-at-a-time sensitivity (`batch_oat`), one run per case |
 | `A/wind/` | Window A wind direction, from the north-east (135) and south-west (315) |
-| `A/analysis/fable/` | Report, numbers and figures used in the paper |
+| `A/analysis/paper/` | Numbers and figures for the window A results (`analysis.py`) |
 | `seeded/main/` | Island main comparison |
 | `seeded/series/`, `seeded/hindcast/` | Island weekly series and per-municipality counts on day 731 (2 Oct 2026) |
 | `seeded/analysis/` | Island summary |

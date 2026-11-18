@@ -1,4 +1,4 @@
-"""Model inputs for window A, written to sp-tracker/gama/rssi_prototype/includes/.
+"""Model inputs for window A, written to ../includes/.
 landscape_A.asc  value = lgu_id*10 + cane_frac (lgu 1 Cadiz, 2 Manapla, 3 Victorias); -9999 outside the 3 LGUs
 lgus_A.shp       municipal boundaries (UTM 51N)
 roads_A.shp      OSM trunk/primary/secondary/tertiary roads clipped to the grid extent (UTM 51N), field hwy
