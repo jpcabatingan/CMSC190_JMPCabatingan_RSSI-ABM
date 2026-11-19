@@ -47,7 +47,38 @@ Full text (17) & Review or synthesis, not a primary model & 5 \\
 
 Each of the 30 final studies was coded in two ways. The first is a set of nine coverage codes recording, for each study, the presence or absence of a feature relevant to an RSSI model: a reusable ABM structure, control-strategy testing, model validation, damage-to-yield coupling, temperature or weather drivers, spatial spread, biological control, chemical control, and a farmer decision agent. These codes record whether the field has addressed each component the proposed model needs.
 
-The second is a set of four analytical dimensions. Each dimension takes a published typology together with its full set of values, so a value that no study occupies appears as an empty cell. Spatial representation uses the environment topologies available in the GAMA platform as catalogued by \citet{Taillandier2019}: grid, graph, and continuous. The grid is split by georeferencing. An abstract grid, a schematic lattice of placeless cells, is distinguished from a raster, the same cells tied to a real landscape through a GIS layer, because an RSSI model of actual Negros fields needs the georeferenced kind. A non-spatial value covers models with no explicit environment. Agent architecture uses the reactive, deliberative, and hybrid distinction of \citet{Wooldridge1995}. Validation type uses the distinction between output validation, in which simulated outputs are matched to observed data, and structural validation, in which the model's mechanisms are checked, for example by experts or stakeholders \citep{Rykiel1996}. The farmer decision dimension uses a scheme defined from the corpus, separating behavioural, economic-optimisation, and empirical-rule models from studies with no farmer agent. Coding the corpus against fixed, externally defined value sets records where the field is dense and where it is empty.
+The second is a set of four analytical dimensions. Each dimension takes a published typology together with its full set of values, so a value that no study occupies appears as an empty cell. Spatial representation uses the environment topologies available in the GAMA platform as catalogued by \citet{Taillandier2019}: grid, graph, and continuous. The grid is split by georeferencing. An abstract grid, a schematic lattice of placeless cells, is distinguished from a raster, the same cells tied to a real landscape through a GIS layer, because an RSSI model of actual Negros fields needs the georeferenced kind. In a graph, space is a set of nodes joined by edges, such as fields linked by roads or trade routes, so distance is counted in links rather than metres. In continuous space there are no cells, and agents move on real-valued coordinates. A non-spatial value covers models with no explicit environment, in which the population is treated as a whole. Agent architecture uses the reactive, deliberative, and hybrid distinction of \citet{Wooldridge1995}. A reactive agent acts by fixed stimulus-response rules with no internal model of goals, as a pest that develops and spreads by rules does. A deliberative agent holds an internal representation of its situation and chooses actions by reasoning toward a goal, for example by optimising an objective. A hybrid agent combines a reactive layer with a deliberative one. Validation type uses the distinction between output validation, in which simulated outputs are matched to observed data, and structural validation, in which the model's mechanisms are checked, for example by experts or stakeholders \citep{Rykiel1996}. A study that reports neither is coded as none stated. The farmer decision dimension uses a scheme defined from the corpus, separating behavioural, economic-optimisation, and empirical-rule models from studies with no farmer agent. A behavioural farmer decides by perception, imitation, or social influence. An economic-optimisation farmer chooses the action that maximises an objective such as profit. An empirical-rule farmer follows fixed decision rules, such as spraying when a pest count crosses a threshold. Coding the corpus against fixed, externally defined value sets records where the field is dense and where it is empty. Table~\ref{table:framework} summarises both sets.
+
+\begin{table}[!htbp]
+\vspace{2ex}
+\centering
+\small
+\caption{Analytical framework: the nine coverage codes and the four analytical dimensions used to code the 30 final studies.}
+\label{table:framework}
+\begin{tabular}{L{0.27\textwidth}L{0.63\textwidth}}
+\hline\hline
+\multicolumn{2}{l}{\emph{Coverage codes (present or absent in each study)}} \\ \hline
+\emph{Model design} & \\
+ABM structure & A reusable agent, state-variable, and scheduling design \\
+Control testing & The model tests or compares pest-control strategies \\
+Validation & The model is checked against field or literature data, or by experts \\
+\emph{Pest-crop coupling and drivers} & \\
+Damage-yield coupling & Pest density or feeding is linked to crop damage or yield loss \\
+Temperature or weather & Temperature or weather drives development, survival, or dispersal \\
+Spatial spread & The pest or its natural enemy moves or spreads in explicit space \\
+\emph{Control strategy} & \\
+Biological control & Parasitoids, predators, entomopathogens, or sterile-insect release \\
+Chemical control & Pesticide application, timing, or pesticide policy \\
+\emph{Human dimension} & \\
+Farmer decision & Farmer decision-making or adoption is represented by agents \\ \hline
+\multicolumn{2}{l}{\emph{Analytical dimensions (one value per study)}} \\ \hline
+Spatial representation \citep{Taillandier2019} & Abstract grid; georeferenced raster; graph; continuous; non-spatial \\
+Agent architecture \citep{Wooldridge1995} & Reactive; deliberative; hybrid \\
+Validation type \citep{Rykiel1996} & Output; structural; none stated \\
+Farmer decision paradigm (defined from the corpus) & Behavioural; economic optimisation; empirical rules; no farmer agent \\
+\hline\hline
+\end{tabular}
+\end{table}
 
 Host crop, pest taxonomic group, and modelling platform are recorded as descriptors. The crop labels a study but does not distinguish a modelling choice, so it is reported in the corpus characterisation that follows.
 
@@ -83,7 +114,7 @@ The review locates three gaps, stated in decreasing order of how firmly the corp
 
 The first is the absence of a scale-insect model. No study among the 30 models a scale insect, whose crawlers settle on the host to feed \citep{Guerrero2026}, and the five sugarcane studies all model a borer or a weevil. There is no agent-based model of RSSI, or of any soft scale, on sugarcane, and none validated on Philippine or Negros field data. The nearest modelled hemipterans, cotton whitefly, sugarcane aphid, and spotted lanternfly, are mobile. Sessility is the decisive difference for a model. In an agent-based pest model, movement and spatial spread are core agent behaviours, and a scale insect disperses only briefly as a first-instar crawler before settling permanently on the plant, so dispersal rules written for a mobile whitefly or aphid do not carry over. A model of RSSI must be built new rather than reparameterised from an existing one.
 
-The second is a structural gap at the intersection of the coding dimensions. Of the 30 studies, 8 model a farmer decision and 11 model biological control. No single study couples a farmer decision with both a biological-control option and a pest-biology component. The nearest study, \citet{Chen2024}, gave farmers a choice between biological and chemical control and carried no pest-biology component. The studies that couple a farmer decision to a pest-biology component, such as \citet{Grovermann2017}, modelled only chemical control. This claim rests on the per-study codes rather than on a single tabulated value.
+The second is a structural gap at the intersection of the coding dimensions. Of the 30 studies, 8 model a farmer decision and 11 model biological control. No single study couples a farmer decision with both a biological-control option and a pest-biology component. The nearest study, \citet{Chen2024}, gave farmers a choice between biological and chemical control and carried no pest-biology component. The studies that couple a farmer decision to a pest-biology component, such as \citet{Grovermann2017}, modelled only chemical control. This finding comes from the per-study codes, not from a summary count.
 
 The third concerns methods the field underuses. The single network model represents a coarse regional trade graph and leaves the field-to-field connectivity relevant to cane transport unaddressed. Although grids dominate the corpus, only 6 of the 30 studies use a georeferenced grid whose cells map to a real landscape. Structural or participatory validation is rare, in 4 of the 30 studies.
 

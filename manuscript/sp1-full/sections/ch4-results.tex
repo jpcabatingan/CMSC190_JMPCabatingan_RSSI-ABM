@@ -1,6 +1,6 @@
 \section{RESULTS AND DISCUSSION}
 
-\noindent\fbox{\parbox{0.95\linewidth}{\singlespacing\small\textbf{DRAFT.} This chapter is a draft for review. Its numbers come from the reported runs and are not expected to change, but the text and the selection of results may.}}
+\noindent\fbox{\parbox{0.95\linewidth}{\singlespacing\small\textbf{DRAFT.} This chapter is a draft for review.}}
 
 All results are comparisons between simulated strategies under the baseline assumptions of Table~\ref{table:params}. They are not field predictions. Two configurations are read as different only when the ratio of their means exceeds the pooled noise band (see Replicates and the reading of differences in the Methodology).
 
@@ -10,7 +10,7 @@ Table~\ref{table:results} gives the main comparison. On window A, no control gav
 
 The island runs gave the same order. Their loads are not comparable with window A in size, because the island seed is spread over 11 units and the island holds about 11 times as much cane. Without control, 64\% of the island's cane cells were ever infested by the end of the run, against 2.7\% to 8.2\% under the control strategies.
 
-Biological control used more applications than chemical control without decline: 54,588 against 34,882 on window A, and 71,334 against 48,560 on the island. The fungus kills 0.9 times as much per application, so more farms reach the trigger again [inference from the model rules]. Declining chemical efficacy raised the number of chemical applications, to 85,602 and 125,474 on window A at halving every 20 and every 10 applications.
+Biological control used more applications than chemical control without decline: 54,588 against 34,882 on window A, and 71,334 against 48,560 on the island. This follows from the model rules: the fungus kills 0.9 times as much per application, so more farms reach the trigger again. Declining chemical efficacy raised the number of chemical applications, to 85,602 and 125,474 on window A at halving every 20 and every 10 applications.
 
 \begin{table}[!htbp]
 \vspace{2ex}
@@ -36,7 +36,7 @@ None & 10,763,962 & 0.97 & 0 & 33,213,080 & 0.64 & 0 \\
 
 Figure~\ref{fig:decline} shows chemical control on window A across decline rates. With efficacy halving every 160 or 80 applications per farm, chemical control stayed within or below the biological and hybrid range (0.79 and 0.90 times the pool). At 40 applications it was 3.9 times worse. Chemical control therefore matches biological control only if its efficacy halves no faster than about every 80 applications. This advantage of the fungus follows from the assumption that its efficacy does not decline.
 
-When the fungus also halved every 20 applications, biological control gave 1,205,918 K-days, 1.60 times chemical control at the same rate, and the hybrid gave the lowest load, 0.32 times biological and 0.51 times chemical. At 80 applications, biological control was 1.95 times chemical, and the hybrid tied with biological (ratio 0.89). The hybrid counts the two agents' applications separately, so switching agents spreads the decline across them [inference from the model rules].
+When the fungus also halved every 20 applications, biological control gave 1,205,918 K-days, 1.60 times chemical control at the same rate, and the hybrid gave the lowest load, 0.32 times biological and 0.51 times chemical. At 80 applications, biological control was 1.95 times chemical, and the hybrid tied with biological (ratio 0.89). This is likely because the hybrid counts the two agents' applications separately, so switching agents spreads the decline across them.
 
 \begin{figure}[!htbp]
 	\begin{center}
@@ -52,7 +52,7 @@ The hybrid differs from biological control only where farms reach Level 3, and t
 
 \subsection{Sensitivity}
 
-The baseline ranking, biological and hybrid tied, then chemical with decline 20, then no control, held in 15 of 18 cases (Table~\ref{table:oat}). No control was last in all 18. When treatment waited for Level 3 or was repeated every 28 days, biological control ranked first. When settlement survival was 0.01, chemical control ranked first, but the outbreak was about 26 times smaller and the ranking is unclear [inference]. The response rules mattered more than any biological parameter: for biological control, waiting for Level 2 raised the load 16.6 times and waiting for Level 3, 33 times. Wind bias, long-jump rate, and the fungus-to-chemical ratio moved loads by less than 1.5 times. Runs with wind from the south-west gave 0.96 to 1.11 times the load of runs with wind from the north-east, inside the noise bands.
+The baseline ranking, biological and hybrid tied, then chemical with decline 20, then no control, held in 15 of 18 cases (Table~\ref{table:oat}). No control was last in all 18. When treatment waited for Level 3 or was repeated every 28 days, biological control ranked first. When settlement survival was 0.01, chemical control ranked first, but the outbreak was about 26 times smaller, so this ranking is less certain. The response rules mattered more than any biological parameter: for biological control, waiting for Level 2 raised the load 16.6 times and waiting for Level 3, 33 times. Wind bias, long-jump rate, and the fungus-to-chemical ratio moved loads by less than 1.5 times. Runs with wind from the south-west gave 0.96 to 1.11 times the load of runs with wind from the north-east, inside the noise bands.
 
 \begin{table}[!htbp]
 \vspace{2ex}
