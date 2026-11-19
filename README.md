@@ -21,4 +21,4 @@ Guerrero, M. S., Navasero, M. M., Javier, M. dP., Candano, M. F., Candano, R. N.
 
 Partlow, M. J. (2026, July 21). NegOr under state of calamity as pest hits 17K hectares of sugarcane. *Philippine News Agency*. https://www.pna.gov.ph/articles/1279934
 
-Sugar Regulatory Administration. (2026). *RSSI infestation records and sugarcane production data, Negros Island Region by mill district* (Freedom of information reply MEMO-RDE-VIS-ESD-2026-OCT-004, Extension Services Division-Visayas, dated 19 October 2026) [Unpublished official correspondence].
+Sugar Regulatory Administration. (2026). *RSSI infestation records and sugarcane production data, Negros Island Region by mill district* [Unpublished data obtained through a freedom of information request; Extension Services Division-Visayas, memorandum MEMO-RDE-VIS-ESD-2026-OCT-004, dated 19 October 2026].

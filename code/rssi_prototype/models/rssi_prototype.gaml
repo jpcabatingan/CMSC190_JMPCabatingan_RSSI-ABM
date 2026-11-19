@@ -97,7 +97,7 @@ global {
     float road_daily <- 0.0;          // daily chance a roadside cell is inoculated x infested share
                                       // (traffic-borne crawlers) [assumption]; 0 = no effect
 
-    // ---------------- Crop (SRA FOI reply 2026; USDA FAS GAIN RP2025-0043) ----------------
+    // ---------------- Crop (SRA FOI data 2026; USDA FAS GAIN RP2025-0043) ----------------
     float Y0 <- 61.64;                // TC/ha, pre-outbreak Negros mean [computed, FOI Table II]
     float recovery <- 1.61;           // LKg/TC, FOI Table III NEGROS CY2025-26
     int planting_window <- 243;       // 1 Oct - 31 May (USDA FAS 2025), uniform [assumption]
@@ -1125,7 +1125,7 @@ experiment batch_wind_direction type: batch repeat: 3 keep_seed: false parallel:
 
 // Time-scale check: weekly share ever infested under the hybrid strategy,
 // 10 replicates, baseline parameters; also writes per-LGU ever-infested cells (results/series/lgu_*.csv). Compared later with the verified point (30.1% of planted
-// area validated by 2 Oct 2026, SRA FOI reply) once the model's outbreak start date is defined.
+// area validated by 2 Oct 2026, SRA FOI data) once the model's outbreak start date is defined.
 experiment batch_series_hybrid type: batch repeat: 10 keep_seed: false parallel: 2 until: cycle >= horizon {
     parameter "gui" var: gui among: [false];
     parameter "Strategy" var: strategy among: ["hybrid"];
